@@ -1,25 +1,26 @@
 import scrapy
 import csv
-from scrapy.crawler import CrawlerProcess
 from scrapy2.items import Scrapy2Item
-
-sku_list = []
-
-with open("C:/Users/Tyler/Desktop/scrapy2/scrapy2/spiders/csv/skus.csv", newline="") as csvfile:
-    skureader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    for row in skureader:
-        sku_list.append(''.join(row))
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
 
 class spider1(scrapy.Spider):
     name = "spider1"
     domain = "https://www.amazon.ca/s?k="
 
+    with open("C:/Users/Tyler/Desktop/scrapy2/scrapy2/spiders/csv/skus.csv", newline="") as csvfile:
+        skureader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+
+        sku_list = []
+
+        for row in skureader:
+            sku_list.append(''.join(row))
+
     def start_requests(self):
-        for url in sku_list:
+        for url in self.sku_list:
             yield scrapy.Request(url=spider1.domain+url ,callback = self.parse)
 
     def parse(self, response):
-
         # orig_sku1 = response.url
         # orig_sku2 = orig_sku1.replace("https://www.amazon.ca/", "")
         # sep = '/'
@@ -43,12 +44,11 @@ class spider1(scrapy.Spider):
 
             yield items
 
-
-
-
-# process = CrawlerProcess({
-#     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
-# })
+# process = CrawlerProcess(get_project_settings())
 #
+# # process = CrawlerProcess({
+# #     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
+# # })
+# #
 # process.crawl(spider1)
 # process.start()

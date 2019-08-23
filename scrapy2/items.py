@@ -14,3 +14,4 @@ class Scrapy2Item(scrapy.Item):
     images = scrapy.Field()
     sku = scrapy.Field()
     file_name = scrapy.Field()
+    second_title = scrapy.Field()

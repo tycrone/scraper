@@ -15,7 +15,6 @@ from scrapy.pipelines.images import ImagesPipeline
 
 class Scrapy2Pipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
-        # use 'accession' as name for the image when it's downloaded
         return [scrapy.Request(x, meta={'image_name': item['sku']})
                 for x in item.get('image_urls', [])]
 
