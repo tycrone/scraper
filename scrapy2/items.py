@@ -10,6 +10,7 @@ import scrapy
 
 class Scrapy2Item(scrapy.Item):
     title = scrapy.Field()
+    artist = scrapy.Field()
     image_urls = scrapy.Field()
     images = scrapy.Field()
     sku = scrapy.Field()

@@ -68,7 +68,7 @@ ITEM_PIPELINES = {
    'scrapy2.pipelines.Scrapy2Pipeline': 1,
 }
 
-IMAGES_STORE = 'C:/Users/Tyler/Desktop/scrapy2/scrapy2/spiders/images'
+IMAGES_STORE = 'C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/images'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

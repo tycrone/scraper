@@ -8,7 +8,7 @@ class spider1(scrapy.Spider):
     name = "spider1"
     domain = "https://www.amazon.ca/s?k="
 
-    with open("C:/Users/Tyler/Desktop/scrapy2/scrapy2/spiders/csv/skus.csv", newline="") as csvfile:
+    with open("C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/skus.csv", newline="") as csvfile:
         skureader = csv.reader(csvfile, delimiter=' ', quotechar='|')
 
         sku_list = []
@@ -33,12 +33,14 @@ class spider1(scrapy.Spider):
         for dataset in response.css(RESULT_SELECTOR):
 
             titlevar = dataset.css('span.a-text-normal ::text').extract_first()
+            artistvar = response.xpath('//span[@class="a-size-base"]/text()')[1].extract()
             imgvar = [dataset.css('img ::attr(src)').extract_first()]
             skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
 
             skuvar_split = skuvar.split(',', 1)[0]
 
             items['title'] = titlevar
+            items['artist'] = artistvar
             items['image_urls'] = imgvar
             items['sku'] = skuvar_split
 
