@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2af8b8e-66a4-4f39-aa70-260adfaaca64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scrapy2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scrapy2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrapy2/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrapy2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrapy2/spiders/amazonscraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/spiders/amazonscraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/csv/skus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/spiders/csv/skus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/csv/skus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/821826022317.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Tyler\Desktop\scrapy2\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\Tyler\Desktop\scraper\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />

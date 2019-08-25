@@ -16,6 +16,7 @@ NEWSPIDER_MODULE = 'scrapy2.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapy2 (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:39.0) Gecko/20100101 Firefox/39.0'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -51,9 +52,10 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'scrapy2.middlewares.Scrapy2DownloaderMiddleware': 543,
-#}
+# DOWNLOADER_MIDDLEWARES = {
+#    # 'scrapy2.middlewares.Scrapy2DownloaderMiddleware': 543,
+#    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 100
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -65,7 +67,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    # 'scrapy.pipelines.images.ImagesPipeline' : 1,
-   'scrapy2.pipelines.Scrapy2Pipeline': 1,
+   'scrapy2.pipelines.Scrapy2Pipeline': 100,
+   'scrapy2.pipelines.WriteToCsv': 200,
 }
 
 IMAGES_STORE = 'C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/images'
