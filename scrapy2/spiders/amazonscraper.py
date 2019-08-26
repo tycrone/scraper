@@ -18,17 +18,13 @@ class spider1(scrapy.Spider):
 
     def start_requests(self):
         for url in self.sku_list:
-            yield scrapy.Request(url=spider1.domain+url ,callback = self.parse)
+            yield scrapy.Request(url=spider1.domain+url, callback = self.parse)
+
+    custom_settings = {
+        'DEPTH_LIMIT': 1
+    }
 
     def parse(self, response):
-
-        #use original searched sku as opposed to sku pulled from page (current skuvar)
-        # orig_sku1 = response.url
-        # orig_sku2 = orig_sku1.replace("https://www.amazon.ca/", "")
-        # sep = '/'
-        # orig_sku3 = orig_sku2.split(sep, 1)[0]
-
-        items = Scrapy2Item()
 
         RESULT_SELECTOR = ".sg-col-20-of-24" + \
                           ".s-result-item" + \
@@ -40,30 +36,48 @@ class spider1(scrapy.Spider):
                           ".sg-col-12-of-16" + \
                           ".sg-col-24-of-28"
 
+
         for dataset in response.css(RESULT_SELECTOR):
 
+            items = Scrapy2Item()
+
             titlevar = dataset.css('span.a-text-normal ::text').extract_first()
-            # artistvar = response.xpath('//span[@class="a-size-base"]/text()')[1].extract()
             artistvar = dataset.css('span.a-size-base ::text').extract()
 
-            imgvar = [dataset.css('img ::attr(src)').extract_first()]
             skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
 
             skuvar_split = skuvar.split(',', 1)[0]
             artistvar_split = artistvar[1]
 
-            if any("by " in s for s in artistvar):
+            if any ("Sponsored" in s for s in artistvar):
+                items['artist'] = "DELETE THIS"
+                items['sku'] = "DELETE THIS"
+                items['title'] = "DELETE THIS"
+            elif any("by " in s for s in artistvar):
                 items['artist'] = artistvar_split
+                items['sku'] = skuvar_split
+                items['title'] = titlevar
             else:
                 items['artist'] = ""
+                items['sku'] = skuvar_split
+                items['title'] = titlevar
 
+            itempage = response.urljoin(dataset.css('div.a-section > h2.a-size-mini > a ::attr(href)').extract_first())
 
-            items['sku'] = skuvar_split
-            items['title'] = titlevar
-            # items['artist'] = artistvar_split
-            items['image_urls'] = imgvar
+            items['theurl'] = itempage
 
-            yield items
+            request = scrapy.Request(itempage, callback=self.get_iteminfo)
+            request.meta['items'] = items  # By calling .meta, we can pass our item object into the callback.
+            yield request  # Return the item info back to the parser.
+
+    def get_iteminfo(self, response):
+
+        items = response.meta['items']  # Get the item we passed from scrape()
+
+        imgvar = [response.css('img#landingImage ::attr(data-old-hires)').extract_first()]
+        items['image_urls'] = imgvar
+
+        yield items
 
 # process = CrawlerProcess(get_project_settings())
 # process.crawl(spider1)

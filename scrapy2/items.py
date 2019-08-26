@@ -9,6 +9,7 @@
 import scrapy
 
 class Scrapy2Item(scrapy.Item):
+    theurl = scrapy.Field()
     sku = scrapy.Field()
     title = scrapy.Field()
     artist = scrapy.Field()

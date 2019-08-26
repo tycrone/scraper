@@ -23,9 +23,10 @@ class Scrapy2Pipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         return '%s.jpg' % request.meta['image_name']
 
+
 def write_to_csv(item):
    writer = csv.writer(open('C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/output.csv', 'a'), lineterminator='\n')
-   writer.writerow([item[key] for key in item.keys()])
+   writer.writerow([item[sku] for sku in item.keys()])
 
 class WriteToCsv(object):
 
