@@ -75,6 +75,10 @@ class spider1(scrapy.Spider):
         items = response.meta['items']  # Get the item we passed from scrape()
 
         imgvar = [response.css('img#landingImage ::attr(data-old-hires)').extract_first()]
+
+        if len(imgvar) < 2:
+            imgvar = [response.css('img#landingImage ::attr(src)').extract_first()]
+
         items['image_urls'] = imgvar
 
         yield items
