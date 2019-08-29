@@ -66,9 +66,9 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   # 'scrapy.pipelines.images.ImagesPipeline' : 1,
-   'scrapy2.pipelines.Scrapy2Pipeline': 100,
-   'scrapy2.pipelines.WriteToCsv': 200,
+   # 'scrapy2.pipelines.ImageLoResPipeline': 100,
+   'scrapy2.pipelines.Scrapy2Pipeline': 200,
+   'scrapy2.pipelines.WriteToCsv': 300,
 }
 
 IMAGES_STORE = 'C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/images'

@@ -36,7 +36,6 @@ class spider1(scrapy.Spider):
                           ".sg-col-12-of-16" + \
                           ".sg-col-24-of-28"
 
-
         for dataset in response.css(RESULT_SELECTOR):
 
             items = Scrapy2Item()
@@ -74,12 +73,14 @@ class spider1(scrapy.Spider):
 
         items = response.meta['items']  # Get the item we passed from scrape()
 
-        imgvar = [response.css('img#landingImage ::attr(data-old-hires)').extract_first()]
+        imgvar_test = response.css('img#landingImage ::attr(data-old-hires)').extract_first()
+        imgvar_hires = [response.css('img#landingImage ::attr(data-old-hires)').extract_first()]
+        imgvar_lores = [response.css('div#img-canvas > img ::attr(src)').extract_first()]
 
-        if len(imgvar) < 2:
-            imgvar = [response.css('img#landingImage ::attr(src)').extract_first()]
-
-        items['image_urls'] = imgvar
+        if imgvar_test is None:
+            items['image_urls'] = imgvar_lores
+        else:
+            items['image_urls'] = imgvar_hires
 
         yield items
 

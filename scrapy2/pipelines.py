@@ -14,6 +14,16 @@ from scrapy.pipelines.images import ImagesPipeline
 
 import csv
 
+# class ImageLoResPipeline(object):
+#     def process_item(self, item, spider):
+#         # check if key "image_urls" is in item dict
+#         if item.get('image_urls') is None:
+#             # if not, try other specific path
+#             item['image_urls'] = [response.css('img#landingImage ::attr(src)').extract_first()]
+#         else:
+#             pass
+#         return item
+
 class Scrapy2Pipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
         return [scrapy.Request(x, meta={'image_name': item['sku']})
