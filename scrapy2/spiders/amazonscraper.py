@@ -82,6 +82,25 @@ class spider1(scrapy.Spider):
         else:
             items['image_urls'] = imgvar_hires
 
+        trackvar = response.css('div#musicTracksFeature > div.content > table > tbody > tr > td ::text').extract()
+        trackvar_str = ''.join(trackvar)
+        trackvar_tweaked = trackvar_str.replace('\n', ' / ')
+
+        if trackvar is None:
+            items['tracklist'] = "NA"
+        else:
+            items['tracklist'] = trackvar_tweaked
+
+        descvar = response.css('div#productDescription > p ::text').extract()
+        descvar_str = ''.join(trackvar)
+        descvar_tweaked1 = descvar_str.replace('\n', '')
+        descvar_tweaked2 = descvar_tweaked1.replace('\t', '')
+
+        if descvar is None:
+            items['description'] = "NA"
+        else:
+            items['description'] = descvar
+
         yield items
 
 # process = CrawlerProcess(get_project_settings())
