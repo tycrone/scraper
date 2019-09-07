@@ -6,6 +6,7 @@ from scrapy2.items import Scrapy2Item
 
 class spider1(scrapy.Spider):
     name = "spider1"
+    rotate_user_agent = True
     domain = "https://www.amazon.ca/s?k="
 
     with open("C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/input.csv", newline="") as csvfile:
@@ -73,18 +74,23 @@ class spider1(scrapy.Spider):
 
         items = response.meta['items']  # Get the item we passed from scrape()
 
-        imgvar_test = response.css('img#landingImage ::attr(data-old-hires)').extract_first()
-        imgvar_hires = [response.css('img#landingImage ::attr(data-old-hires)').extract_first()]
+        imgvar_test1 = response.css('img#landingImage').extract_first()
+        imgvar_test2 = response.css('img#landingImage ::attr(data-old-hires)').extract_first()
+        imgvar_test3 = response.css('div#img-canvas > img ::attr(src)').extract_first()
+        imgvar_hires1 = [response.css('img#landingImage ::attr(data-old-hires)').extract_first()]
+        imgvar_hires2 = [response.css('img#landingImage ::attr(src)').extract_first()]
         imgvar_lores = [response.css('div#img-canvas > img ::attr(src)').extract_first()]
 
-        if imgvar_test is None:
+        if imgvar_test1 is None:
             items['image_urls'] = imgvar_lores
+        elif len(imgvar_test2) <  5:
+            items['image_urls'] = imgvar_hires2
         else:
-            items['image_urls'] = imgvar_hires
+            items['image_urls'] = imgvar_hires1
 
         trackvar = response.css('div#musicTracksFeature > div.content > table > tbody > tr > td ::text').extract()
         trackvar_str = ''.join(trackvar)
-        trackvar_tweaked = trackvar_str.replace('\n', ' / ')
+        trackvar_tweaked = trackvar_str.replace('\n', '/')
 
         if trackvar is None:
             items['tracklist'] = "NA"
@@ -99,7 +105,7 @@ class spider1(scrapy.Spider):
         if descvar is None:
             items['description'] = "NA"
         else:
-            items['description'] = descvar
+            items['description'] = descvar_tweaked2
 
         yield items
 
