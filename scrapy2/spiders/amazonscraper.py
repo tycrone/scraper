@@ -21,59 +21,80 @@ class spider1(scrapy.Spider):
         for url in self.sku_list:
             yield scrapy.Request(url=spider1.domain+url, callback = self.parse)
 
-    custom_settings = {
-        'DEPTH_LIMIT': 1
-    }
-
     def parse(self, response):
 
-        RESULT_SELECTOR = ".sg-col-20-of-24" + \
-                          ".s-result-item" + \
-                          ".sg-col-0-of-12" + \
-                          ".sg-col-28-of-32" + \
-                          ".sg-col-16-of-20" + \
-                          ".sg-col" + \
-                          ".sg-col-32-of-36" + \
-                          ".sg-col-12-of-16" + \
-                          ".sg-col-24-of-28"
+        items = Scrapy2Item()
+        results_exist = response.css('span.a-size-medium').extract()
 
-        for dataset in response.css(RESULT_SELECTOR):
-
-            items = Scrapy2Item()
-
-            titlevar = dataset.css('span.a-text-normal ::text').extract_first()
-            artistvar = dataset.css('span.a-size-base ::text').extract()
+        #IF NO RESULTS EXIST
+        if any("No results for" in s for s in results_exist):
+            print("FUUUUUUUUUUUUUUUUUCK")
 
             skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
-
             skuvar_split = skuvar.split(',', 1)[0]
-            artistvar_split = artistvar[1]
 
-            if any ("Sponsored" in s for s in artistvar):
-                items['artist'] = "DELETE THIS"
-                items['sku'] = "DELETE THIS"
-                items['title'] = "DELETE THIS"
-            elif any("by " in s for s in artistvar):
-                items['artist'] = artistvar_split
-                items['sku'] = skuvar_split
-                items['title'] = titlevar
-            else:
-                items['artist'] = ""
-                items['sku'] = skuvar_split
-                items['title'] = titlevar
+            items['sku'] = skuvar_split
+            items['theurl'] = ""
+            items['title'] = ""
+            items['artist'] = ""
+            items['image_urls'] = ["https://www.sunriserecords.com/wp-content/uploads/2019/03/ENG-Sunrise-Records-Logo-Dark-Background-nobg.png"]
+            items['tracklist'] = ""
+            items['description'] = ""
+            items['image_db_filepath'] = ""
+            yield items
 
-            itempage = response.urljoin(dataset.css('div.a-section > h2.a-size-mini > a ::attr(href)').extract_first())
+        #IF RESULTS EXIST
+        else:
+            print("FOOOOOOOOOOOOOOOOOOOCK")
 
-            items['theurl'] = itempage
+            RESULT_SELECTOR = ".sg-col-20-of-24" + \
+                              ".s-result-item" + \
+                              ".sg-col-0-of-12" + \
+                              ".sg-col-28-of-32" + \
+                              ".sg-col-16-of-20" + \
+                              ".sg-col" + \
+                              ".sg-col-32-of-36" + \
+                              ".sg-col-12-of-16" + \
+                              ".sg-col-24-of-28"
 
-            request = scrapy.Request(itempage, callback=self.get_iteminfo)
-            request.meta['items'] = items  # By calling .meta, we can pass our item object into the callback.
-            yield request  # Return the item info back to the parser.
+            for dataset in response.css(RESULT_SELECTOR):
+
+                titlevar = dataset.css('span.a-text-normal ::text').extract_first()
+
+                artistvar = dataset.css('span.a-size-base ::text').extract()
+                artistvar_split = artistvar[1]
+
+                skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
+                skuvar_split = skuvar.split(',', 1)[0]
+
+                if any ("Sponsored" in s for s in artistvar):
+                    items['sku'] = "DELETE THIS"
+                    items['title'] = "DELETE THIS"
+                    items['artist'] = "DELETE THIS"
+                elif any("by " in s for s in artistvar):
+                    items['sku'] = skuvar_split
+                    items['title'] = titlevar
+                    items['artist'] = artistvar_split
+                else:
+                    items['sku'] = skuvar_split
+                    items['title'] = titlevar
+                    items['artist'] = ""
+
+
+                items['image_db_filepath'] = "\\" + "\\"  + "everest-nas3\sunrise_marketing\website_images" + "\\" + skuvar_split + ".jpg"
+
+                itempage = response.urljoin(dataset.css('div.a-section > h2.a-size-mini > a ::attr(href)').extract_first())
+                items['theurl'] = itempage
+
+                request = scrapy.Request(itempage, callback=self.get_iteminfo)
+                request.meta['items'] = items  # By calling .meta, we can pass our item object into the callback.
+                yield request  # Return the item info back to the parser.
 
     def get_iteminfo(self, response):
 
         items = response.meta['items']  # Get the item we passed from scrape()
 
+        #----------FIND IMG SOURCE AND ASSIGN
         imgvar_test1 = response.css('img#landingImage').extract_first()
         imgvar_test2 = response.css('img#landingImage ::attr(data-old-hires)').extract_first()
         imgvar_test3 = response.css('div#img-canvas > img ::attr(src)').extract_first()
@@ -88,22 +109,24 @@ class spider1(scrapy.Spider):
         else:
             items['image_urls'] = imgvar_hires1
 
+        #----------FIND TRACKLIST AND ASSIGN
         trackvar = response.css('div#musicTracksFeature > div.content > table > tbody > tr > td ::text').extract()
         trackvar_str = ''.join(trackvar)
         trackvar_tweaked = trackvar_str.replace('\n', '/')
 
         if trackvar is None:
-            items['tracklist'] = "NA"
+            items['tracklist'] = ""
         else:
             items['tracklist'] = trackvar_tweaked
 
+        #----------FIND DESCRIPTION AND ASSIGN
         descvar = response.css('div#productDescription > p ::text').extract()
-        descvar_str = ''.join(trackvar)
+        descvar_str = ''.join(descvar)
         descvar_tweaked1 = descvar_str.replace('\n', '')
         descvar_tweaked2 = descvar_tweaked1.replace('\t', '')
 
         if descvar is None:
-            items['description'] = "NA"
+            items['description'] = ""
         else:
             items['description'] = descvar_tweaked2
 

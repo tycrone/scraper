@@ -14,16 +14,6 @@ from scrapy.pipelines.images import ImagesPipeline
 
 import csv
 
-# class ImageLoResPipeline(object):
-#     def process_item(self, item, spider):
-#         # check if key "image_urls" is in item dict
-#         if item.get('image_urls') is None:
-#             # if not, try other specific path
-#             item['image_urls'] = [response.css('img#landingImage ::attr(src)').extract_first()]
-#         else:
-#             pass
-#         return item
-
 class Scrapy2Pipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
         return [scrapy.Request(x, meta={'image_name': item['sku']})
@@ -33,13 +23,24 @@ class Scrapy2Pipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         return '%s.jpg' % request.meta['image_name']
 
-
-def write_to_csv(item):
-   writer = csv.writer(open('C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/output.csv', 'a'), lineterminator='\n')
-   writer.writerow([item[sku] for sku in item.keys()])
+# def write_to_csv(item):
+#    writer = csv.writer(open('C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/output.csv', 'a'), lineterminator='\n')
+#    writer.writerow([item[sku] for sku in item.keys()])
+#
+# class WriteToCsv(object):
+#
+#     def process_item(self, item, info):
+#         write_to_csv(item)
+#         return item
 
 class WriteToCsv(object):
+    def __init__(self):
+        self.csvwriter = csv.writer(open('C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/output.csv', 'w', newline=''))
+        self.csvwriter.writerow(["ITEMNO","SHORTDESCR","SHORTDESCRFR","ARTIST","LONGDESCEN","LONGDESCFR","TRACKLIST","STUDIO","NOOFDISCS","DURATION","RATING","RELEASE","IMAGEURL1","PRODUCTLENGTH","PRODUCTWIDTH","PRODUCTHEIGHT","PRODUCTWEIGHT","SIZE","GENDER","LVL1CODE","LVL2CODE","LVL3CODE","METATITLE","METAKEYWORD","METADESCEN","METADESCFR","WEBDEAL1","WEBDEAL2","WEBDEAL3","WEBDEAL4","WEBDEAL5","PRODUCTTAG1","PRODUCTTAG2","PRODUCTTAG3","PRODUCTTAG4","PRODUCTTAG5"])
 
-    def process_item(self, item, info):
-        write_to_csv(item)
+    def process_item(self,item,spider):
+        self.csvwriter.writerow([item['sku'],item['title'],item['title'],item['artist'],item['description'],item['description'],item['tracklist'],"","","","","",item['image_db_filepath']])
         return item
+
+    theurl = scrapy.Field()
+    image_urls = scrapy.Field()

@@ -16,3 +16,4 @@ class Scrapy2Item(scrapy.Item):
     image_urls = scrapy.Field()
     tracklist = scrapy.Field()
     description = scrapy.Field()
+    image_db_filepath = scrapy.Field()
