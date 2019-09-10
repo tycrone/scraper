@@ -18,22 +18,24 @@ class spider1(scrapy.Spider):
             sku_list.append(''.join(row))
 
     def start_requests(self):
-        for url in self.sku_list:
-            yield scrapy.Request(url=spider1.domain+url, callback = self.parse)
+
+        for index, url in enumerate(self.sku_list):
+            yield scrapy.Request(url=spider1.domain+url, callback = self.parse, meta={'index_number': index})
 
     def parse(self, response):
 
         items = Scrapy2Item()
+
+        items['theindex'] = response.meta['index_number']
+
         results_exist = response.css('span.a-size-medium').extract()
 
         #IF NO RESULTS EXIST
         if any("No results for" in s for s in results_exist):
-            print("FUUUUUUUUUUUUUUUUUCK")
-
             skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
             skuvar_split = skuvar.split(',', 1)[0]
 
-            items['sku'] = skuvar_split
+            items['sku'] = str(skuvar_split.encode('utf-8'))[2:-1]
             items['theurl'] = ""
             items['title'] = ""
             items['artist'] = ""
@@ -45,8 +47,6 @@ class spider1(scrapy.Spider):
 
         #IF RESULTS EXIST
         else:
-            print("FOOOOOOOOOOOOOOOOOOOCK")
-
             RESULT_SELECTOR = ".sg-col-20-of-24" + \
                               ".s-result-item" + \
                               ".sg-col-0-of-12" + \
@@ -72,12 +72,12 @@ class spider1(scrapy.Spider):
                     items['title'] = "DELETE THIS"
                     items['artist'] = "DELETE THIS"
                 elif any("by " in s for s in artistvar):
-                    items['sku'] = skuvar_split
-                    items['title'] = titlevar
-                    items['artist'] = artistvar_split
+                    items['sku'] = str(skuvar_split.encode('utf-8'))[2:-1]
+                    items['title'] = str(titlevar.encode('utf-8'))[2:-1]
+                    items['artist'] = str(artistvar_split.encode('utf-8'))[2:-1]
                 else:
-                    items['sku'] = skuvar_split
-                    items['title'] = titlevar
+                    items['sku'] = str(skuvar_split.encode('utf-8'))[2:-1]
+                    items['title'] = str(titlevar.encode('utf-8'))[2:-1]
                     items['artist'] = ""
 
 
@@ -117,7 +117,7 @@ class spider1(scrapy.Spider):
         if trackvar is None:
             items['tracklist'] = ""
         else:
-            items['tracklist'] = trackvar_tweaked
+            items['tracklist'] = str(trackvar_tweaked.encode('utf-8'))[2:-1]
 
         #----------FIND DESCRIPTION AND ASSIGN
         descvar = response.css('div#productDescription > p ::text').extract()
@@ -128,7 +128,7 @@ class spider1(scrapy.Spider):
         if descvar is None:
             items['description'] = ""
         else:
-            items['description'] = descvar_tweaked2
+            items['description'] = str(descvar_tweaked2.encode('utf-8'))[2:-1]
 
         yield items
 
