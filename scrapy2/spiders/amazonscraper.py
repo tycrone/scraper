@@ -62,7 +62,11 @@ class spider1(scrapy.Spider):
                 titlevar = dataset.css('span.a-text-normal ::text').extract_first()
 
                 artistvar = dataset.css('span.a-size-base ::text').extract()
-                artistvar_split = artistvar[1]
+
+                if len(artistvar) > 2:
+                    artistvar_split = artistvar[1]
+                else:
+                    artistvar_split = "artist"
 
                 skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
                 skuvar_split = skuvar.split(',', 1)[0]
