@@ -30,6 +30,21 @@ class spider1(scrapy.Spider):
 
         results_exist = response.css('span.a-size-medium').extract()
 
+        results_exist_type1 = response.css('div.sg-col-20-of-24.s-result-item.sg-col-0-of-12.sg-col-28-of-32.sg-col-16-of-20.sg-col.sg-col-32-of-36.sg-col-12-of-16.sg-col-24-of-28').extract()
+        results_exist_type2 = response.css('div.sg-col-4-of-24.sg-col-4-of-12.sg-col-4-of-36.s-result-item.sg-col-4-of-28.sg-col-4-of-16.sg-col.sg-col-4-of-20.sg-col-4-of-32').extract()
+
+        RESULT_SELECTOR_TEST1 = ".sg-col-20-of-24" + \
+                          ".s-result-item" + \
+                          ".sg-col-0-of-12" + \
+                          ".sg-col-28-of-32" + \
+                          ".sg-col-16-of-20" + \
+                          ".sg-col" + \
+                          ".sg-col-32-of-36" + \
+                          ".sg-col-12-of-16" + \
+                          ".sg-col-24-of-28"
+
+        RESULT_SELECTOR_TEST2 = "[data-index='0']"
+
         #IF NO RESULTS EXIST
         if any("No results for" in s for s in results_exist):
             skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
@@ -47,15 +62,10 @@ class spider1(scrapy.Spider):
 
         #IF RESULTS EXIST
         else:
-            RESULT_SELECTOR = ".sg-col-20-of-24" + \
-                              ".s-result-item" + \
-                              ".sg-col-0-of-12" + \
-                              ".sg-col-28-of-32" + \
-                              ".sg-col-16-of-20" + \
-                              ".sg-col" + \
-                              ".sg-col-32-of-36" + \
-                              ".sg-col-12-of-16" + \
-                              ".sg-col-24-of-28"
+            if (len(results_exist_type1) > 4):
+                RESULT_SELECTOR = RESULT_SELECTOR_TEST1
+            else:
+                RESULT_SELECTOR = RESULT_SELECTOR_TEST2
 
             for dataset in response.css(RESULT_SELECTOR):
 

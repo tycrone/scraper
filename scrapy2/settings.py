@@ -29,7 +29,7 @@ ROBOTSTXT_OBEY = False
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
-CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 100
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -54,7 +54,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 
 DOWNLOADER_MIDDLEWARES = {
-   # 'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
+   'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
    'scrapy2.middlewares.RotateUserAgentMiddleware': 110,
 }
 USER_AGENT_CHOICES = [
