@@ -3,9 +3,105 @@
   <component name="ChangeListManager">
     <list default="true" id="a2af8b8e-66a4-4f39-aa70-260adfaaca64" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scrapy2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrapy2/spiders/amazonscraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/spiders/amazonscraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrapy2/spiders/csv/input.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/spiders/csv/input.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/csv/output.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scrapy2/spiders/csv/output.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429327260.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429327802.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429327819.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429327840.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328045.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328083.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328441.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328458.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328496.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328502.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328908.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429328984.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329042.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329127.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329158.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329240.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329493.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329639.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329646.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329752.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329769.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329776.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429329837.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429330048.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/032429331694.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/051497005139.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373170298.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373173305.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373176368.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373176375.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373178362.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373202784.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373205020.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373205891.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373208243.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373209066.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373211267.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373211434.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373211441.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373211922.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373213964.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373214183.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/057373217412.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935570486.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935571827.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935572190.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935572206.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935572381.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935581239.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935583516.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935583721.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935585428.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935589013.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935595694.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935852445.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/065935852681.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137077589.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137209393.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137209591.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137216094.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137236382.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137236498.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137287087.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/760137287193.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212001116.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212002069.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212003882.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212003899.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212005091.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212005152.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212006470.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212006562.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212103315.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212106149.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212107825.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212110979.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212110993.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212111174.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212111181.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212112300.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212112539.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212113581.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212114236.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212114274.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212115196.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212115257.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212118012.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212118111.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212118128.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212118135.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212118142.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212118197.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774212710667.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/774213000170.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/816018011149.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapy2/spiders/images/889466139390.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

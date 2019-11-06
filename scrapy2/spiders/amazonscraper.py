@@ -73,10 +73,13 @@ class spider1(scrapy.Spider):
 
                 artistvar = dataset.css('span.a-size-base ::text').extract()
 
-                if len(artistvar) > 2:
+                if len(artistvar) > 1:
                     artistvar_split = artistvar[1]
                 else:
                     artistvar_split = "artist"
+
+                print("ITEMCOUNT")
+                print(len(artistvar))
 
                 skuvar = response.xpath('//meta[@name="keywords"]/@content')[0].extract()
                 skuvar_split = skuvar.split(',', 1)[0]
@@ -85,13 +88,14 @@ class spider1(scrapy.Spider):
                     items['sku'] = "DELETE THIS"
                     items['title'] = "DELETE THIS"
                     items['artist'] = "DELETE THIS"
+                    print(artistvar)
                 elif any("by " in s for s in artistvar):
                     items['sku'] = str(skuvar_split.encode('utf-8'))[2:-1]
-                    items['title'] = str(titlevar.encode('utf-8'))[2:-1]
-                    items['artist'] = str(artistvar_split.encode('utf-8'))[2:-1]
+                    items['title'] = titlevar
+                    items['artist'] = artistvar_split
                 else:
                     items['sku'] = str(skuvar_split.encode('utf-8'))[2:-1]
-                    items['title'] = str(titlevar.encode('utf-8'))[2:-1]
+                    items['title'] = titlevar
                     items['artist'] = ""
 
 
@@ -126,12 +130,12 @@ class spider1(scrapy.Spider):
         #----------FIND TRACKLIST AND ASSIGN
         trackvar = response.css('div#musicTracksFeature > div.content > table > tbody > tr > td ::text').extract()
         trackvar_str = ''.join(trackvar)
-        trackvar_tweaked = trackvar_str.replace('\n', '/')
+        trackvar_tweaked = trackvar_str.replace('\n', ' ')
 
         if trackvar is None:
             items['tracklist'] = ""
         else:
-            items['tracklist'] = str(trackvar_tweaked.encode('utf-8'))[2:-1]
+            items['tracklist'] = trackvar_tweaked
 
         #----------FIND DESCRIPTION AND ASSIGN
         descvar = response.css('div#productDescription > p ::text').extract()
@@ -142,7 +146,7 @@ class spider1(scrapy.Spider):
         if descvar is None:
             items['description'] = ""
         else:
-            items['description'] = str(descvar_tweaked2.encode('utf-8'))[2:-1]
+            items['description'] = descvar_tweaked2
 
         yield items
 
