@@ -24,11 +24,16 @@ class spider1(scrapy.Spider):
 
     def parse(self, response):
 
+        #RUN SCRAPY SHELL FOR DEBUGGING PURPOSES
+        # from scrapy.shell import inspect_response
+        # inspect_response(response, self)
+
         items = Scrapy2Item()
 
         items['theindex'] = response.meta['index_number']
 
         results_exist = response.css('span.a-size-medium').extract()
+
 
         results_exist_type1 = response.css('div.sg-col-20-of-24.s-result-item.sg-col-0-of-12.sg-col-28-of-32.sg-col-16-of-20.sg-col.sg-col-32-of-36.sg-col-12-of-16.sg-col-24-of-28').extract()
         results_exist_type2 = response.css('div.sg-col-4-of-24.sg-col-4-of-12.sg-col-4-of-36.s-result-item.sg-col-4-of-28.sg-col-4-of-16.sg-col.sg-col-4-of-20.sg-col-4-of-32').extract()
@@ -60,12 +65,18 @@ class spider1(scrapy.Spider):
             items['image_db_filepath'] = ""
             yield items
 
+            print("NO RESULTS EXIST 1")
+
         #IF RESULTS EXIST
         else:
             if (len(results_exist_type1) > 4):
                 RESULT_SELECTOR = RESULT_SELECTOR_TEST1
+
+                print("RESULTS EXIST 1")
             else:
                 RESULT_SELECTOR = RESULT_SELECTOR_TEST2
+
+                print("RESULTS EXIST 2")
 
             for dataset in response.css(RESULT_SELECTOR):
 
@@ -99,7 +110,7 @@ class spider1(scrapy.Spider):
                     items['artist'] = ""
 
 
-                items['image_db_filepath'] = "\\" + "\\"  + "everest-nas3\sunrise_marketing\website_images" + "\\" + skuvar_split + ".jpg"
+                items['image_db_filepath'] = "\\" + "\\"  + "everest-nas3\srweb_images" + "\\" + skuvar_split + ".jpg"
 
                 itempage = response.urljoin(dataset.css('div.a-section > h2.a-size-mini > a ::attr(href)').extract_first())
                 items['theurl'] = itempage
