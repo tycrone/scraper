@@ -36,10 +36,10 @@ class Scrapy2Pipeline(ImagesPipeline):
 class WriteToCsv(object):
     def __init__(self):
         self.csvwriter = csv.writer(open('C:/Users/Tyler/Desktop/scraper/scrapy2/spiders/csv/output.csv', 'w', newline=''))
-        self.csvwriter.writerow(["INDEX","ITEMNO","SHORTDESCR","SHORTDESCRFR","ARTIST","LONGDESCEN","LONGDESCFR","TRACKLIST","STUDIO","NOOFDISCS","DURATION","RATING","RELEASE","IMAGEURL1","PRODUCTLENGTH","PRODUCTWIDTH","PRODUCTHEIGHT","PRODUCTWEIGHT","SIZE","GENDER","LVL1CODE","LVL2CODE","LVL3CODE","METATITLE","METAKEYWORD","METADESCEN","METADESCFR","WEBDEAL1","WEBDEAL2","WEBDEAL3","WEBDEAL4","WEBDEAL5","PRODUCTTAG1","PRODUCTTAG2","PRODUCTTAG3","PRODUCTTAG4","PRODUCTTAG5"])
+        self.csvwriter.writerow(["INDEX","ITEMNO","SHORTDESCR","SHORTDESCRFR","ARTIST","LONGDESCEN","LONGDESCFR","TRACKLIST","STUDIO","NOOFDISCS","DURATION","RATING","RELEASE","IMAGEURL1","PRODUCTLENGTH","PRODUCTWIDTH","PRODUCTHEIGHT","PRODUCTWEIGHT","SIZE","GENDER","LVL1CODE","LVL2CODE","LVL3CODE","METATITLE","METAKEYWORD","METADESCEN","METADESCFR","WEBDEAL1","WEBDEAL2","WEBDEAL3","WEBDEAL4","WEBDEAL5","PRODUCTTAG1","PRODUCTTAG2","PRODUCTTAG3","PRODUCTTAG4","PRODUCTTAG5","ALLOWONWEB"])
 
     def process_item(self,item,spider):
-        self.csvwriter.writerow([item['theindex'],item['sku'],item['title'],item['title'],item['artist'],item['description'],item['description'],item['tracklist'],"","","","","",item['image_db_filepath']])
+        self.csvwriter.writerow([item['theindex'],item['sku'],item['title'],item['title'],item['artist'],item['description'],item['description'],item['tracklist'],"","","","","",item['image_db_filepath'],"","","","","","","","","","","","","","","","","","","","","","","",item['allowonweb']])
         return item
 
     theurl = scrapy.Field()
